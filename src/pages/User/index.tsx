@@ -11,14 +11,19 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import './User.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsTweetsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
+import {
+  selectIsTweetsLoading,
+  selectTweetsItems,
+} from '../../store/ducks/tweets/selectors';
 import { Tweet } from '../../components/Tweet';
 import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
 import { User } from '../../store/ducks/user/contracts/state';
 import { AuthApi } from '../../services/api/authApi';
 import { RouteComponentProps } from 'react-router-dom';
 
-export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
+export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({
+  match,
+}) => {
   const classes = useHomeStyles();
   const tweets = useSelector(selectTweetsItems);
   const dispatch = useDispatch();
@@ -41,12 +46,15 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
   };
 
   return (
-    <Paper className={classNames(classes.tweetsWrapper, 'user')} variant="outlined">
+    <Paper
+      className={classNames(classes.tweetsWrapper, 'user')}
+      variant="outlined"
+    >
       <Paper className={classes.tweetsHeader} variant="outlined">
         <BackButton />
 
         <div>
-          <Typography variant="h6">Archakov Dennis</Typography>
+          <Typography variant="h6">Test Dennis</Typography>
           <Typography variant="caption" display="block" gutterBottom>
             {tweets.length} твита
           </Typography>
@@ -69,14 +77,14 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
         )}
 
         <p className="user__info-description">
-          Frontend Developer / UI Designer / JavaScript Красное сердце ReactJS ⚛ React Native,
-          NodeJS
+          Frontend Developer / UI Designer / JavaScript Красное сердце ReactJS ⚛
+          React Native, NodeJS
         </p>
         <ul className="user__info-details">
           <li>Nazran, Ingushetia</li>
           <li>
-            <a className="link" href="https://archakov.im">
-              archakov.im
+            <a className="link" href="https://test.im">
+              test.im
             </a>
           </li>
           <li>
@@ -86,7 +94,12 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
           <li>Регистрация: ноябрь 2016 г.</li>
         </ul>
       </div>
-      <Tabs value={activeTab} indicatorColor="primary" textColor="primary" onChange={handleChange}>
+      <Tabs
+        value={activeTab}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={handleChange}
+      >
         <Tab label="Твиты" />
         <Tab label="Твиты и ответы" />
         <Tab label="Медиа" />
@@ -99,7 +112,12 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
           </div>
         ) : (
           tweets.map((tweet) => (
-            <Tweet key={tweet._id} classes={classes} images={tweet.images} {...tweet} />
+            <Tweet
+              key={tweet._id}
+              classes={classes}
+              images={tweet.images}
+              {...tweet}
+            />
           ))
         )}
       </div>
